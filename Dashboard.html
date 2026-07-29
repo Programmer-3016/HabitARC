@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HabitArc Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600&amp;family=Geist:wght@500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed": "#002113",
+                        "on-surface": "#191c1d",
+                        "on-background": "#191c1d",
+                        "surface-dim": "#d9dadb",
+                        "tertiary-fixed": "#ffdad8",
+                        "on-primary": "#ffffff",
+                        "on-secondary-fixed-variant": "#005236",
+                        "error": "#ba1a1a",
+                        "inverse-surface": "#2e3132",
+                        "on-primary-fixed-variant": "#274e3d",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error": "#ffffff",
+                        "inverse-on-surface": "#f0f1f2",
+                        "on-primary-fixed": "#002114",
+                        "surface-container-low": "#f3f4f5",
+                        "primary": "#012d1d",
+                        "on-secondary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed-dim": "#85d7ad",
+                        "secondary-container": "#a0f4c8",
+                        "tertiary-fixed-dim": "#f5b7b4",
+                        "on-tertiary-container": "#d29895",
+                        "on-tertiary-fixed": "#331111",
+                        "on-surface-variant": "#414844",
+                        "primary-fixed": "#c1ecd4",
+                        "secondary": "#0e6c4a",
+                        "outline-variant": "#c1c8c2",
+                        "outline": "#717973",
+                        "surface-variant": "#e1e3e4",
+                        "on-error-container": "#93000a",
+                        "primary-fixed-dim": "#a5d0b9",
+                        "surface-container": "#edeeef",
+                        "surface": "#f8f9fa",
+                        "surface-tint": "#3f6653",
+                        "inverse-primary": "#a5d0b9",
+                        "on-secondary-container": "#19724f",
+                        "on-tertiary-fixed-variant": "#673a39",
+                        "on-primary-container": "#86af99",
+                        "background": "#f8f9fa",
+                        "tertiary-container": "#5a302f",
+                        "primary-container": "#1b4332",
+                        "surface-container-highest": "#e1e3e4",
+                        "surface-container-high": "#e7e8e9",
+                        "surface-bright": "#f8f9fa",
+                        "tertiary": "#401b1b",
+                        "secondary-fixed": "#a0f4c8",
+                        "on-tertiary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-padding": "20px",
+                        "element-gap": "12px",
+                        "stack-gap": "16px",
+                        "card-padding": "20px",
+                        "section-margin": "32px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Hanken Grotesk"],
+                        "label-sm": ["Geist"],
+                        "body-md": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "label-md": ["Geist"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "label-sm": ["10px", { "lineHeight": "12px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg": ["28px", { "lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Hanken Grotesk', sans-serif; }
+        .geist { font-family: 'Geist', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .material-symbols-outlined.fill { font-variation-settings: 'FILL' 1; }
+        
+        /* Progress Ring Animation */
+        @keyframes dash {
+            0% { stroke-dasharray: 0, 100; }
+            100% { stroke-dasharray: 75, 100; }
+        }
+        .progress-ring-circle {
+            animation: dash 1.5s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background antialiased min-h-screen flex flex-col items-center">
+<!-- Top App Bar (Mobile) -->
+<header class="w-full sticky top-0 z-50 bg-background/85 backdrop-blur-xl border-b border-surface-container/70 flex justify-between items-center px-4 py-3 max-w-7xl mx-auto md:hidden shadow-[0_2px_12px_rgba(0,0,0,0.03)]">
+    <a href="Dashboard.html" class="flex items-center gap-2">
+        <img src="logo.png" alt="HabitArc Logo" class="w-8 h-8 rounded-lg object-contain"/>
+        <span class="font-headline-md text-lg text-primary font-bold tracking-tight">HabitArc</span>
+    </a>
+    
+    <div class="flex items-center gap-2">
+        <!-- Live Streak Counter Pill -->
+        <div class="px-2.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-600 dark:text-amber-400 flex items-center gap-1 font-semibold text-xs geist shadow-2xs">
+            <span class="material-symbols-outlined text-sm fill text-amber-500">local_fire_department</span>
+            <span id="header-streak-count">5d</span>
+        </div>
+
+        <!-- Quick Settings Button -->
+        <a class="w-8 h-8 rounded-full bg-surface-container-low border border-surface-container flex items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-95 shadow-2xs" href="Settings.html" aria-label="Settings">
+            <span class="material-symbols-outlined text-lg">settings</span>
+        </a>
+    </div>
+</header>
+
+<!-- Web Navigation (Hidden on Mobile) -->
+<header class="hidden md:flex w-full sticky top-0 z-50 bg-background/85 backdrop-blur-xl justify-between items-center px-container-padding py-3.5 max-w-7xl mx-auto border-b border-surface-container/70 shadow-[0_2px_12px_rgba(0,0,0,0.03)]">
+    <a href="Dashboard.html" class="flex items-center gap-2.5">
+        <img src="logo.png" alt="HabitArc Logo" class="w-9 h-9 rounded-lg object-contain"/>
+        <span class="font-headline-lg text-xl text-primary font-bold tracking-tight">HabitArc</span>
+    </a>
+    <nav class="flex gap-8">
+        <a class="text-primary font-bold font-headline-md text-headline-md hover:opacity-80 transition-opacity active:scale-95 duration-200" href="Dashboard.html">Dashboard</a>
+        <a class="text-on-surface-variant font-headline-md text-headline-md hover:opacity-80 transition-opacity active:scale-95 duration-200" href="Habits.html">Habits</a>
+        <a class="text-on-surface-variant font-headline-md text-headline-md hover:opacity-80 transition-opacity active:scale-95 duration-200" href="Insights.html">Insights</a>
+    </nav>
+    <div class="flex items-center gap-3">
+        <!-- Live Streak Counter Pill -->
+        <div class="px-3 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-600 dark:text-amber-400 flex items-center gap-1.5 font-semibold text-xs geist shadow-2xs">
+            <span class="material-symbols-outlined text-base fill text-amber-500">local_fire_department</span>
+            <span id="header-streak-count-web">5 Day Streak</span>
+        </div>
+
+        <a class="w-9 h-9 rounded-full bg-surface-container-low border border-surface-container flex items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-95 shadow-2xs" href="Settings.html" aria-label="Settings">
+            <span class="material-symbols-outlined text-lg">settings</span>
+        </a>
+    </div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 w-full max-w-7xl px-container-padding pb-32 md:pb-8 pt-4 space-y-section-margin">
+<!-- Header Section -->
+<section class="flex flex-col space-y-2">
+<h1 id="greeting" class="font-headline-lg text-headline-lg text-on-surface">Good morning, Alex</h1>
+<p id="today-date" class="font-body-md text-body-md text-on-surface-variant">Loading...</p>
+</section>
+<!-- Bento Grid Overview -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-stack-gap">
+<!-- Progress Ring Card -->
+<div class="col-span-1 md:col-span-2 bg-surface-container-lowest border border-surface-container rounded-xl p-card-padding flex items-center justify-between">
+<div class="flex flex-col space-y-2 max-w-[200px]">
+<h2 class="font-headline-md text-headline-md text-on-surface">Daily Progress</h2>
+<p id="progress-msg" class="font-body-md text-body-md text-on-surface-variant">Keep up the great momentum today.</p>
+</div>
+<div class="relative w-32 h-32 flex items-center justify-center">
+<svg class="w-full h-full transform -rotate-90" viewbox="0 0 36 36">
+<path class="text-surface-container stroke-current" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke-width="3"></path>
+<path id="progress-arc" class="text-primary-container stroke-current progress-ring-circle" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke-dasharray="0, 100" stroke-linecap="round" stroke-width="3"></path>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span id="progress-pct" class="font-headline-md text-headline-md text-on-surface font-bold">0%</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase geist">Done</span>
+</div>
+</div>
+</div>
+<!-- Streaks Stack -->
+<div class="col-span-1 flex flex-col gap-stack-gap">
+<!-- Current Streak -->
+<div class="flex-1 bg-surface-container-lowest border border-surface-container rounded-xl p-card-padding flex flex-col justify-center relative overflow-hidden">
+<div class="absolute right-0 top-0 opacity-10 transform translate-x-4 -translate-y-4">
+<span class="material-symbols-outlined text-[80px] fill">local_fire_department</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase geist mb-1">Current Streak</span>
+<div class="flex items-baseline gap-1">
+<span id="current-streak" class="font-headline-lg text-headline-lg text-on-surface font-bold">0</span>
+<span class="font-body-md text-body-md text-on-surface-variant">days</span>
+</div>
+</div>
+<!-- Longest Streak -->
+<div class="flex-1 bg-surface-container-lowest border border-surface-container rounded-xl p-card-padding flex flex-col justify-center relative overflow-hidden">
+<div class="absolute right-0 top-0 opacity-10 transform translate-x-4 -translate-y-4">
+<span class="material-symbols-outlined text-[80px] fill">emoji_events</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase geist mb-1">Longest</span>
+<div class="flex items-baseline gap-1">
+<span id="longest-streak" class="font-headline-lg text-headline-lg text-on-surface font-bold">0</span>
+<span class="font-body-md text-body-md text-on-surface-variant">days</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Today's Habits Section -->
+<section class="flex flex-col space-y-stack-gap">
+<h2 class="font-headline-md text-headline-md text-on-surface">Today's Habits</h2>
+<div id="habits-container" class="grid grid-cols-1 gap-stack-gap">
+<!-- Habits rendered dynamically by app.js -->
+</div>
+</section>
+</main>
+<!-- Floating Glassmorphism Bottom Nav Bar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-3 left-3 right-3 z-50 max-w-md mx-auto bg-surface/95 dark:bg-surface-container/95 backdrop-blur-xl border border-outline-variant/30 dark:border-outline/30 rounded-3xl shadow-[0_12px_32px_rgba(0,0,0,0.12)] px-2 py-2 grid grid-cols-5 items-center">
+<a class="col-span-1 flex flex-col items-center justify-center py-1 px-1 rounded-2xl bg-primary-container text-on-primary font-semibold shadow-sm transition-all duration-200" href="Dashboard.html">
+<span class="material-symbols-outlined text-[22px] leading-none fill">home</span>
+<span class="font-label-sm text-[10px] tracking-tight mt-1 leading-none">Dashboard</span>
+</a>
+<a class="col-span-1 flex flex-col items-center justify-center py-1 px-1 rounded-2xl text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low transition-all duration-200" href="Habits.html">
+<span class="material-symbols-outlined text-[22px] leading-none">format_list_bulleted</span>
+<span class="font-label-sm text-[10px] tracking-tight mt-1 leading-none">Habits</span>
+</a>
+<a class="col-span-1 flex items-center justify-center relative -top-4" href="Add_Habit.html">
+<div class="w-[52px] h-[52px] rounded-full bg-primary-container text-on-primary flex items-center justify-center shadow-[0_8px_20px_rgba(1,45,29,0.4)] ring-4 ring-background dark:ring-surface-container active:scale-90 hover:scale-105 transition-all">
+<span class="material-symbols-outlined text-[28px] leading-none flex items-center justify-center">add</span>
+</div>
+</a>
+<a class="col-span-1 flex flex-col items-center justify-center py-1 px-1 rounded-2xl text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low transition-all duration-200" href="Insights.html">
+<span class="material-symbols-outlined text-[22px] leading-none">insights</span>
+<span class="font-label-sm text-[10px] tracking-tight mt-1 leading-none">Insights</span>
+</a>
+<a class="col-span-1 flex flex-col items-center justify-center py-1 px-1 rounded-2xl text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low transition-all duration-200" href="Profile.html">
+<span class="material-symbols-outlined text-[22px] leading-none">person</span>
+<span class="font-label-sm text-[10px] tracking-tight mt-1 leading-none">Profile</span>
+</a>
+</nav>
+<script src="app.js"></script>
+<script>
+(function() {
+    const settings = HabitArc.getSettings();
+
+    // Greeting & Date
+    document.getElementById('greeting').textContent = HabitArc.getGreeting() + ', ' + settings.userName.split(' ')[0];
+    document.getElementById('today-date').textContent = HabitArc.getFormattedToday();
+
+    function render() {
+        // Progress
+        const progress = HabitArc.getTodayProgress();
+        const pct = progress.percentage;
+        document.getElementById('progress-pct').textContent = pct + '%';
+        document.getElementById('progress-arc').setAttribute('stroke-dasharray', pct + ', 100');
+
+        const msgs = [
+            pct === 100 ? 'Perfect day! All habits completed.' :
+            pct >= 75 ? "You're almost there! Keep going." :
+            pct >= 50 ? 'Great progress! Stay consistent.' :
+            pct > 0 ? 'Good start. Build momentum today.' :
+            'Start your day strong. You got this!'
+        ];
+        document.getElementById('progress-msg').textContent = msgs[0];
+
+        // Streaks
+        document.getElementById('current-streak').textContent = HabitArc.getOverallCurrentStreak();
+        document.getElementById('longest-streak').textContent = HabitArc.getOverallLongestStreak();
+
+        // Today's Habits
+        const container = document.getElementById('habits-container');
+        container.innerHTML = '';
+        const todayHabits = HabitArc.getTodayHabits();
+
+        if (todayHabits.length === 0) {
+            container.innerHTML = '<div class="text-center py-8 text-on-surface-variant"><span class="material-symbols-outlined text-[48px] mb-2 block opacity-30">self_improvement</span><p class="font-body-md text-body-md">No habits scheduled for today</p></div>';
+            return;
+        }
+
+        todayHabits.forEach(habit => {
+            const isCompleted = HabitArc.isCompletedToday(habit.id);
+            const streak = HabitArc.getCurrentStreak(habit.id);
+            const style = HabitArc.getCategoryStyle(habit.category);
+            const last7 = HabitArc.getLast7Days(habit.id);
+
+            const card = document.createElement('div');
+            card.className = `bg-surface-container-lowest border border-surface-container rounded-xl p-card-padding flex flex-col gap-element-gap hover:border-primary-fixed transition-colors duration-200 cursor-pointer ${isCompleted ? 'opacity-70' : ''}`;
+
+            // 7 day dots
+            let dotsHtml = last7.map(d => {
+                if (d.isToday) {
+                    return `<div class="flex flex-col items-center gap-1"><span class="w-6 h-6 rounded-full ${isCompleted ? 'bg-primary-container flex items-center justify-center' : 'bg-surface-container border-2 border-primary-container'}"><span class="material-symbols-outlined text-[14px] ${isCompleted ? 'text-on-primary' : 'hidden'}">${isCompleted ? 'check' : ''}</span></span><span class="font-label-sm text-[8px] text-primary-container font-bold">${d.label}</span></div>`;
+                }
+                if (d.completed) {
+                    return `<div class="flex flex-col items-center gap-1"><span class="w-6 h-6 rounded-full bg-primary-container flex items-center justify-center"><span class="material-symbols-outlined text-[14px] text-on-primary">check</span></span><span class="font-label-sm text-[8px] text-on-surface-variant">${d.label}</span></div>`;
+                }
+                return `<div class="flex flex-col items-center gap-1"><span class="w-6 h-6 rounded-full bg-surface-container border border-outline-variant"></span><span class="font-label-sm text-[8px] text-on-surface-variant">${d.label}</span></div>`;
+            }).join('');
+
+            card.innerHTML = `
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center gap-3" onclick="window.location.href='Habit_Detail.html?id=${habit.id}'">
+                        <div class="w-10 h-10 rounded-full ${style.bg} flex items-center justify-center ${style.text}">
+                            <span class="material-symbols-outlined ${style.iconFill ? 'fill' : ''}">${habit.icon}</span>
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="font-headline-md text-headline-md text-on-surface text-base ${isCompleted ? 'line-through text-on-surface-variant' : ''}">${habit.name}</span>
+                            <span class="font-label-sm text-label-sm text-on-surface-variant geist">Streak: ${streak} day${streak !== 1 ? 's' : ''}</span>
+                        </div>
+                    </div>
+                    <button class="habit-toggle w-8 h-8 rounded-full ${isCompleted ? 'bg-primary-container flex items-center justify-center text-on-primary shadow-[0_4px_12px_rgba(0,0,0,0.05)]' : 'border-2 border-outline-variant flex items-center justify-center text-outline-variant hover:border-primary-container hover:text-primary-container'} active:scale-95 transition-all" data-id="${habit.id}">
+                        <span class="material-symbols-outlined text-[20px]">${isCompleted ? 'check' : 'check'}</span>
+                    </button>
+                </div>
+                <div class="flex justify-between mt-2 pt-3 border-t border-surface-container">${dotsHtml}</div>
+            `;
+
+            container.appendChild(card);
+        });
+
+        // Attach toggle handlers
+        document.querySelectorAll('.habit-toggle').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const id = this.dataset.id;
+                if (HabitArc.isCompletedToday(id)) {
+                    HabitArc.uncompleteHabit(id);
+                } else {
+                    HabitArc.completeHabit(id);
+                }
+                render();
+            });
+        });
+    }
+
+    render();
+})();
+</script>
+</body></html>
